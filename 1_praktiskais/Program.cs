@@ -19,6 +19,7 @@ class Program
             Console.WriteLine("5 - Login");
             Console.WriteLine("6 - Exit");
             Console.WriteLine("7 - Izvadit visus datus");
+            Console.WriteLine("8 - Meklet un sakartot datus");
             Console.Write("Izvele: ");
             var choice = Console.ReadLine();
 
@@ -99,6 +100,32 @@ class Program
                     foreach (var s in db.Skaitliskidatis) Console.WriteLine($"{s.Id} {s.Telefons} {s.Perskods}");
                     Console.WriteLine(" Login ");
                     foreach (var lo in db.Logins) Console.WriteLine($"{lo.Id} {lo.Epasts} {lo.Parole}");
+                    break;
+
+                case "8":
+                    Console.Write("Ievadi varda fragmentu: ");
+                    string searchVards = Console.ReadLine() ?? "";
+                    var lietotajiVards = db.Lietotajs.Where(l => l.Vards.Contains(searchVards)).ToList();
+                    foreach (var l in lietotajiVards) Console.WriteLine($"{l.Id} {l.Vards} {l.Uzvards}");
+
+                    var augstiBmi = db.Bmis.Where(b => b.Augums > 180).ToList();
+                    foreach (var b in augstiBmi) Console.WriteLine($"{b.Id} {b.Augums} {b.Svars}");
+
+                    Console.Write("Ievadi skolu: ");
+                    string searchSkola = Console.ReadLine() ?? "";
+                    var hobijiSkola = db.Hobijis.Where(h => h.Skola.Contains(searchSkola)).ToList();
+                    foreach (var h in hobijiSkola) Console.WriteLine($"{h.Id} {h.Hobijs} {h.Skola}");
+
+                    var lieliTelefoni = db.Skaitliskidatis.Where(s => s.Telefons > 200000000).ToList();
+                    foreach (var s in lieliTelefoni) Console.WriteLine($"{s.Id} {s.Telefons} {s.Perskods}");
+
+                    Console.Write("Ievadi epasta fragmentu: ");
+                    string searchEpasts = Console.ReadLine() ?? "";
+                    var loginsEpasts = db.Logins.Where(lo => lo.Epasts.Contains(searchEpasts)).ToList();
+                    foreach (var lo in loginsEpasts) Console.WriteLine($"{lo.Id} {lo.Epasts} {lo.Parole}");
+
+                    var lietotajiSorted = db.Lietotajs.OrderBy(l => l.Uzvards).ToList();
+                    foreach (var l in lietotajiSorted) Console.WriteLine($"{l.Id} {l.Vards} {l.Uzvards}");
                     break;
 
                 default:
