@@ -1,0 +1,35 @@
+﻿@model IEnumerable<_1_praktiskais.Models.Hobiji>
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search Hobiji</h1>
+
+<form method="post">
+    <input type="text" name="query" placeholder="Ievadi id, hobiju vai skolu" />
+    <button type="submit">Meklet</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+
+@if (Model != null && Model.Any())
+{
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Hobijs</th>
+            <th>Skola</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Hobijs</td>
+                <td>@item.Skola</td>
+            </tr>
+        }
+    </table>
+}

@@ -1,0 +1,43 @@
+﻿@model _1_praktiskais.Models.Hobiji
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Hobiji</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hobijs" class="control-label"></label>
+                <input asp-for="Hobijs" class="form-control" />
+                <span asp-validation-for="Hobijs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Skola" class="control-label"></label>
+                <input asp-for="Skola" class="form-control" />
+                <span asp-validation-for="Skola" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
